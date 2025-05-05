@@ -72,8 +72,8 @@ resource "aws_ecs_task_definition" "nginx_task" {
     ]
     portMappings = [
       {
-        containerPort = 80
-        hostPort      = 80
+        containerPort = 3000
+        hostPort      = 3000
         protocol      = "tcp"
       }
     ]
@@ -91,7 +91,7 @@ resource "aws_ecs_task_definition" "nginx_task" {
 # Create a new target group of type IP
 resource "aws_lb_target_group" "nginx_target_group" {
   name     = "dor-target-group"
-  port     = 90
+  port     = 3000
   protocol = "HTTP"
   vpc_id   = data.aws_subnet.selected_subnets.vpc_id  # Fetching VPC ID from the first subnet
 
@@ -127,7 +127,7 @@ resource "aws_ecs_service" "nginx_service" {
   load_balancer {
     target_group_arn = aws_lb_target_group.nginx_target_group.arn
     container_name   = "nginx"
-    container_port   = 80
+    container_port   = 3000
   }
 
   depends_on = [
