@@ -17,6 +17,7 @@ pipeline {
 					echo "ECR_URL=314525640319.dkr.ecr.il-central-1.amazonaws.com/dor/nginx:latest"	> .env
 					export $(cat .env | xargs)
 					export TF_VAR_image=$ECR_URL
+					terraform destroy -auto-approve
 					terraform init
 					terraform apply -auto-approve
 					'''
