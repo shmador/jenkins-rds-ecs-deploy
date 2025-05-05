@@ -38,6 +38,11 @@ resource "aws_cloudwatch_log_group" "nginx_logs" {
   retention_in_days = 7  # Optional: Set retention policy (e.g., 7 days)
 }
 
+variable "image" {
+  type        = string
+  description = "Docker image URI to be used in ECS task"
+}
+
 # ECS Task Definition for NGINX container with CloudWatch Logs
 resource "aws_ecs_task_definition" "nginx_task" {
   family                   = "nginx-task"
