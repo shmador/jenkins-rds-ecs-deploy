@@ -101,7 +101,7 @@ resource "aws_lb_target_group" "nginx_target_group" {
 # Add a listener on port 90 to the existing Load Balancer 'imtech'
 resource "aws_lb_listener" "nginx_listener" {
   load_balancer_arn = "arn:aws:elasticloadbalancing:il-central-1:314525640319:loadbalancer/app/imtec/dd67eee2877975d6"  # Correct the ARN here
-  port              = 90
+  port              = 8083
   protocol          = "HTTP"
 
   default_action {
