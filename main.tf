@@ -34,7 +34,7 @@ data "aws_subnet" "selected_subnets" {
 
 # Create the CloudWatch Log Group
 resource "aws_cloudwatch_log_group" "nginx_logs" {
-  name              = "/ecs/nginx-logs"
+  name              = "/ecs/dor-logs"
   retention_in_days = 7  # Optional: Set retention policy (e.g., 7 days)
 }
 
@@ -80,7 +80,7 @@ resource "aws_ecs_task_definition" "nginx_task" {
     logConfiguration = {
       logDriver = "awslogs"
       options = {
-        "awslogs-group"         = "/ecs/nginx-logs"
+        "awslogs-group"         = "/ecs/dor-logs"
         "awslogs-region"        = "il-central-1"
         "awslogs-stream-prefix" = "nginx"
       }
