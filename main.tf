@@ -129,5 +129,9 @@ resource "aws_ecs_service" "nginx_service" {
     container_name   = "nginx"
     container_port   = 80
   }
+
+  depends_on = [
+    aws_lb_listener.nginx_listener
+  ]
 }
 
